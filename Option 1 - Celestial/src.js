@@ -6,18 +6,16 @@ var select = function (s) {
 var selectAll = function (s) {
     return document.querySelectorAll(s);
 }
+
 var hit = select('.hit')
 var allStars = selectAll('.starGroup *')
 var allClouds = selectAll('.cloud')
 var allCloudPuffs = selectAll('.cloud circle')
 
-gsap.set('svg', {
-    visibility: 'visible'
-})
-gsap.set(allStars, {
-    transformOrigin: '50% 50%'
-})
+gsap.set('svg', { visibility: 'visible' })
+gsap.set(allStars, { transformOrigin: '50% 50%' })
 gsap.defaults({ ease: "elastic(0.58,0.8)" });
+
 var tl = gsap.timeline({ paused: true });
 tl.to(['.sun', '.moonMask', '.moon'], {
     duration: 1,
@@ -25,21 +23,12 @@ tl.to(['.sun', '.moonMask', '.moon'], {
     , stagger: 0
 })
 
-    .to(['.moon', '.sun'], {
-        duration: 1,
-        alpha: gsap.utils.wrap([1, 0]),
-        stagger: 0
-    },
-        '-=1')
+    .to(['.moon', '.sun'], { duration: 1, alpha: gsap.utils.wrap([1, 0]), stagger: 0 }, '-=1')
     .to('body', {
         duration: 1
         //backgroundColor:'#2C3E7B'
     }, '-=1')
-    .to('.outline', {
-        duration: 1,
-        stroke: '#6172AD',
-        fill: '#45568D'
-    }, '-=1')
+    .to('.outline', { duration: 1, stroke: '#6172AD', fill: '#45568D' }, '-=1')
 
     .from(allStars, {
         duration: 0.9,
@@ -48,12 +37,7 @@ tl.to(['.sun', '.moonMask', '.moon'], {
         stagger: 0.005
     }, '-=1')
 
-    .to(allClouds, {
-        duration: 1,
-        x: gsap.utils.wrap([40, 20]),
-        alpha: 0,
-        stagger: 0
-    }, '-=1')
+    .to(allClouds, { duration: 1, x: gsap.utils.wrap([40, 20]), alpha: 0, stagger: 0 }, '-=1')
 
     .addPause()
 
@@ -62,31 +46,16 @@ tl.to(['.sun', '.moonMask', '.moon'], {
         attr: gsap.utils.wrap([{ cx: '+=140', cy: '+=20' }, { cx: '+=140', cy: '+=20' }, { cx: '+=90', cy: '+=0' }]),
         stagger: 0
     })
-    .to(['.moon', '.sun'], {
-        duration: 1,
-        alpha: gsap.utils.wrap([0, 1]),
-        stagger: 0
-    }, '-=1')
+    .to(['.moon', '.sun'], { duration: 1, alpha: gsap.utils.wrap([0, 1]), stagger: 0 }, '-=1')
     .to('body', {
         duration: 1,
         //backgroundColor:'#26D6FE',
         ease: "none"
     }, '-=1')
-    .to('.outline', {
-        duration: 1,
-        stroke: '#FCFDFE',
-        fill: '#85E8FE'
-    }, '-=1')
-    .to(allStars, {
-        duration: 1,
-        alpha: 0,
-        stagger: 0
-    }, '-=1')
-    .fromTo(allClouds, {
-        duration: 0.6,
-        y: gsap.utils.wrap([120, 160]),
-        x: gsap.utils.wrap([0])
-    },
+    .to('.outline', { duration: 1, stroke: '#FCFDFE', fill: '#85E8FE' }, '-=1')
+    .to(allStars, { duration: 1, alpha: 0, stagger: 0 }, '-=1')
+    .fromTo(allClouds,
+        { duration: 0.6, y: gsap.utils.wrap([120, 160]), x: gsap.utils.wrap([0]) },
         {
             duration: 0.6,
             y: gsap.utils.wrap([0]),
@@ -96,17 +65,9 @@ tl.to(['.sun', '.moonMask', '.moon'], {
             stagger: 0.06,
         }, '-=1')
 
-    .from(['.plane', '.contrail'], {
-        duration: 0.7,
-        x: -400,
-        ease: "none"
-    }, '-=1')
+    .from(['.plane', '.contrail'], { duration: 0.7, x: -400, ease: "none" }, '-=1')
 
-    .to('.contrail', {
-        duration: 0.5,
-        alpha: 0,
-        ease: "sine.out"
-    })
+    .to('.contrail', { duration: 0.5, alpha: 0, ease: "sine.out" })
 
 //ScrubGSAPTimeline(tl);
 
